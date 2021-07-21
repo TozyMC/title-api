@@ -23,6 +23,12 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compileOnly 'org.jetbrains:annotations:21.0.1'
+
+    api('xyz.tozymc.spigot:treflections:1.0') {
+        exclude group: 'org.spigotmc'
+        exclude group: 'org.jetbrains'
+    }
 }
 
 compileJava {
