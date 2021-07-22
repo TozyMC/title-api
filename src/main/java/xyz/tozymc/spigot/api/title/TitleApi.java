@@ -5,9 +5,9 @@ import static xyz.tozymc.util.Preconditions.checkNotNull;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import xyz.tozymc.minecraft.MinecraftVersion;
-import xyz.tozymc.spigot.api.title.backend.BackendTitleApi;
-import xyz.tozymc.spigot.api.title.backend.impl.BukkitTitleApi;
-import xyz.tozymc.spigot.api.title.backend.impl.LegacyTitleApi;
+import xyz.tozymc.spigot.api.title.backend.title.BackendTitleApi;
+import xyz.tozymc.spigot.api.title.backend.title.BukkitTitleApi;
+import xyz.tozymc.spigot.api.title.backend.title.LegacyTitleApi;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public final class TitleApi {

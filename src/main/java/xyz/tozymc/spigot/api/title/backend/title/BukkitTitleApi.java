@@ -1,8 +1,7 @@
-package xyz.tozymc.spigot.api.title.backend.impl;
+package xyz.tozymc.spigot.api.title.backend.title;
 
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import xyz.tozymc.spigot.api.title.backend.BackendTitleApi;
 
 public class BukkitTitleApi implements BackendTitleApi {
 

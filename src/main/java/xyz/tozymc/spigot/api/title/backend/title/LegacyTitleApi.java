@@ -1,4 +1,4 @@
-package xyz.tozymc.spigot.api.title.backend.impl;
+package xyz.tozymc.spigot.api.title.backend.title;
 
 import static xyz.tozymc.reflect.accessor.Accessors.accessConstructor;
 import static xyz.tozymc.reflect.accessor.Accessors.accessField;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import xyz.tozymc.reflect.accessor.ConstructorAccessor;
 import xyz.tozymc.reflect.resolver.minecraft.NmsClassResolver;
-import xyz.tozymc.spigot.api.title.backend.BackendTitleApi;
 
 public class LegacyTitleApi implements BackendTitleApi {
 
