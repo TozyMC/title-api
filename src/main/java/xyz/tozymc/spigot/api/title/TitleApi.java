@@ -5,6 +5,7 @@ import static xyz.tozymc.util.Preconditions.checkNotNull;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import xyz.tozymc.minecraft.MinecraftVersion;
+import xyz.tozymc.spigot.api.title.backend.actionbar.ActionbarApi;
 import xyz.tozymc.spigot.api.title.backend.title.BackendTitleApi;
 import xyz.tozymc.spigot.api.title.backend.title.BukkitTitleApi;
 import xyz.tozymc.spigot.api.title.backend.title.LegacyTitleApi;
@@ -12,12 +13,14 @@ import xyz.tozymc.spigot.api.title.backend.title.LegacyTitleApi;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public final class TitleApi {
 
-  private final BackendTitleApi api;
+  private final BackendTitleApi titleApi;
+  private final ActionbarApi actionbarApi;
 
   private TitleApi() {
-    this.api = MinecraftVersion.getVersion().isOlderThan(MinecraftVersion.v1_11_R1)
+    this.titleApi = MinecraftVersion.getVersion().isOlderThan(MinecraftVersion.v1_11_R1)
         ? new LegacyTitleApi()
         : new BukkitTitleApi();
+    this.actionbarApi = new ActionbarApi();
   }
 
   public static TitleApi getInstance() {
@@ -28,7 +31,7 @@ public final class TitleApi {
       int stay, int fadeOut) {
     checkNotNull(player, "Player cannot be null");
 
-    getInstance().getApi().sendTitle(player, title, subtitle, fadeIn, stay, fadeOut);
+    getInstance().titleApi.sendTitle(player, title, subtitle, fadeIn, stay, fadeOut);
   }
 
   public static void sendTitle(@NotNull Player player, @NotNull Title title) {
@@ -39,8 +42,10 @@ public final class TitleApi {
         title.getFadeOut());
   }
 
-  public BackendTitleApi getApi() {
-    return api;
+  public static void sendActionbar(@NotNull Player player, String message) {
+    checkNotNull(player, "Player cannot be null");
+
+    getInstance().actionbarApi.sendActionbar(player, message);
   }
 
   private static final class TitleApiHelper {
