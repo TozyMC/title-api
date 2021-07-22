@@ -92,6 +92,14 @@ public class Title {
         title1.getTitle()) && Objects.equals(getSubtitle(), title1.getSubtitle());
   }
 
+  public TimeUnit getTimeUnit() {
+    return timeUnit;
+  }
+
+  public void setTimeUnit(TimeUnit timeUnit) {
+    this.timeUnit = timeUnit;
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(getTitle(), getSubtitle(), getFadeIn(), getStay(), getFadeOut());
@@ -106,13 +114,5 @@ public class Title {
         ", stay=" + stay +
         ", fadeOut=" + fadeOut +
         '}';
-  }
-
-  public TimeUnit getTimeUnit() {
-    return timeUnit;
-  }
-
-  public void setTimeUnit(TimeUnit timeUnit) {
-    this.timeUnit = timeUnit;
   }
 }
