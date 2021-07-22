@@ -43,8 +43,7 @@ public final class Reflections {
   }
 
   public static Object newChatComponentText(String text) {
-    // TODO Add color
     Class<?> chatComponentClass = resolver().resolve("ChatComponentText");
-    return accessConstructor(chatComponentClass, String.class).newInstance(text);
+    return accessConstructor(chatComponentClass, String.class).newInstance(Colors.color(text));
   }
 }
