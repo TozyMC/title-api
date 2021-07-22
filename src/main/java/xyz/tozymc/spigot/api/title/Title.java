@@ -1,21 +1,41 @@
 package xyz.tozymc.spigot.api.title;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import org.jetbrains.annotations.Contract;
 
 public class Title {
+
+  public static final int DEFAULT_FADE_IN = 20;
+  public static final int DEFAULT_STAY = 60;
+  public static final int DEFAULT_FADE_OUT = 20;
 
   private String title;
   private String subtitle;
   private int fadeIn;
   private int stay;
   private int fadeOut;
+  private TimeUnit timeUnit;
 
-  public Title(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+  @Contract(pure = true)
+  public Title(String title, String subtitle, int fadeIn, int stay, int fadeOut, TimeUnit unit) {
     this.title = title;
     this.subtitle = subtitle;
     this.fadeIn = fadeIn;
     this.stay = stay;
     this.fadeOut = fadeOut;
+    this.timeUnit = unit;
+  }
+
+  @Contract(pure = true)
+  public Title(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+    this(title, subtitle, fadeIn, stay, fadeOut, null);
+  }
+
+  @Contract(pure = true)
+  public Title(String title, String subtitle) {
+    this(title, subtitle, DEFAULT_FADE_IN, DEFAULT_STAY, DEFAULT_FADE_OUT);
   }
 
   public String getTitle() {
@@ -86,5 +106,13 @@ public class Title {
         ", stay=" + stay +
         ", fadeOut=" + fadeOut +
         '}';
+  }
+
+  public TimeUnit getTimeUnit() {
+    return timeUnit;
+  }
+
+  public void setTimeUnit(TimeUnit timeUnit) {
+    this.timeUnit = timeUnit;
   }
 }
