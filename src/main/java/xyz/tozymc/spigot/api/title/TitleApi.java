@@ -9,8 +9,8 @@ import xyz.tozymc.spigot.api.title.backend.actionbar.NmsTitleActionbarApi;
 import xyz.tozymc.spigot.api.title.backend.actionbar.SpigotTitleActionbarApi;
 import xyz.tozymc.spigot.api.title.backend.actionbar.TitleActionbarApi;
 import xyz.tozymc.spigot.api.title.backend.title.BackendTitleApi;
-import xyz.tozymc.spigot.api.title.backend.title.BukkitTitleApi;
-import xyz.tozymc.spigot.api.title.backend.title.LegacyTitleApi;
+import xyz.tozymc.spigot.api.title.backend.title.SpigotTitleApi;
+import xyz.tozymc.spigot.api.title.backend.title.NmsTitleApi;
 import xyz.tozymc.spigot.api.title.util.Ticks;
 
 import java.util.concurrent.TimeUnit;
@@ -24,8 +24,8 @@ public final class TitleApi {
   private TitleApi() {
     MinecraftVersion version = MinecraftVersion.getVersion();
     this.titleApi = version.isOlderThan(MinecraftVersion.v1_11_R1)
-        ? new LegacyTitleApi()
-        : new BukkitTitleApi();
+        ? new NmsTitleApi()
+        : new SpigotTitleApi();
     this.titleActionbarApi = version.isOlderThan(MinecraftVersion.v1_9_R1)
         ? new SpigotTitleActionbarApi()
         : new NmsTitleActionbarApi();
