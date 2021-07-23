@@ -14,6 +14,12 @@ import java.util.Arrays;
 
 public final class Reflections {
 
+  public static final Class<?> IChatBaseComponent;
+
+  static {
+    IChatBaseComponent = resolver().resolve("IChatBaseComponent");
+  }
+
   private Reflections() {}
 
   public static Object getHandle(@NotNull Player player) {
