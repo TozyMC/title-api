@@ -36,6 +36,10 @@ public class LegacyTitleApi implements BackendTitleApi {
   @Override
   public void sendTitle(@NotNull Player player, String title, String subtitle, int fadeInt,
       int stay, int fadeOut) {
+    Object packetTimes = accessConstructor(PacketPlayOutTitle, int.class, int.class,
+        int.class).newInstance(fadeInt, stay, fadeOut);
+    sendPacket(player, packetTimes);
+
     if (title != null) {
       Object titleComponent = newChatComponentText(title);
       Object packetTitle = titleConstructor.newInstance(TITLE, titleComponent);
@@ -46,9 +50,5 @@ public class LegacyTitleApi implements BackendTitleApi {
       Object packetSubtitle = titleConstructor.newInstance(SUBTITLE, subtitleComponent);
       sendPacket(player, packetSubtitle);
     }
-
-    Object packetTimes = accessConstructor(PacketPlayOutTitle, int.class, int.class,
-        int.class).newInstance(fadeInt, stay, fadeOut);
-    sendPacket(player, packetTimes);
   }
 }
