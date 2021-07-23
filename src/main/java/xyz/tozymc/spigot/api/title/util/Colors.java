@@ -27,6 +27,9 @@ public final class Colors {
   private static String colorRgb(String text) {
     Matcher matcher = HEX_COLOR_PATTERN.matcher(text);
     StringBuffer buffer = new StringBuffer();
+    if (!matcher.matches()) {
+      return text;
+    }
     while (matcher.find()) {
       matcher.appendReplacement(buffer, translateHexColor(matcher.group(1)));
     }
