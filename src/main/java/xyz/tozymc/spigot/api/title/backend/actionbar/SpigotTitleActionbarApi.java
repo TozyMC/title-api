@@ -6,8 +6,9 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ActionbarApi {
+public class SpigotTitleActionbarApi implements TitleActionbarApi {
 
+  @Override
   public void sendActionbar(@NotNull Player player, String message) {
     BaseComponent[] components = TextComponent.fromLegacyText(message);
     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, components);
