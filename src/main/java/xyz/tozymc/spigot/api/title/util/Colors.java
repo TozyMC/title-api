@@ -14,7 +14,7 @@ public final class Colors {
 
   static {
     ALT_COLOR_CODE = '&';
-    HEX_COLOR_PATTERN = Pattern.compile("(#[a-fA-F0-9]{6})");
+    HEX_COLOR_PATTERN = Pattern.compile("(#[A-Fa-f0-9]{6})");
   }
 
   private Colors() {}
@@ -27,17 +27,15 @@ public final class Colors {
   private static String colorRgb(String text) {
     Matcher matcher = HEX_COLOR_PATTERN.matcher(text);
     StringBuffer buffer = new StringBuffer();
-    if (!matcher.matches()) {
-      return text;
-    }
     while (matcher.find()) {
       matcher.appendReplacement(buffer, translateHexColor(matcher.group(1)));
     }
+    matcher.appendTail(buffer);
     return buffer.toString();
   }
 
   private static String translateHexColor(String hex) {
-    char[] chars = hex.toCharArray();
+    char[] chars = hex.toLowerCase().toCharArray();
     return IntStream.range(1, chars.length)
         .mapToObj(i -> String.valueOf(ChatColor.COLOR_CHAR) + chars[i])
         .collect(Collectors.joining("", ChatColor.COLOR_CHAR + "x", ""));
