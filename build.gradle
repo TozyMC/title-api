@@ -1,5 +1,9 @@
+import java.time.Year;
+
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
 
 group 'xyz.tozymc.spigot'
@@ -22,15 +26,94 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     compileOnly 'org.jetbrains:annotations:21.0.1'
 
     api('xyz.tozymc.spigot:treflections:1.0') {
         exclude group: 'org.spigotmc'
         exclude group: 'org.jetbrains'
     }
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
+    useJUnitPlatform()
 }
 
 compileJava {
     options.encoding = 'UTF-8'
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    if (project.hasProperty("javadocExecutable")) {
+        executable = javadocExecutable
+    }
+    options {
+        charSet 'utf-8'
+        source '1.8'
+        bottom "Copyright &#169; ${Year.now()} TozyMC. All rights reserved."
+        links << 'https://docs.oracle.com/javase/8/docs/api/'
+        links << 'https://hub.spigotmc.org/javadocs/spigot/'
+        links << 'https://javadoc.io/doc/org.jetbrains/annotations/21.0.1/'
+    }
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = rootProject.name
+            from components.java
+            pom {
+                name = rootProject.name
+                description = project.description
+                url = 'https://github.com/TozyMC/title-api'
+                inceptionYear = '2021'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/TozyMC/title-api/blob/main/LICENSE'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/TozyMC/title-api.git'
+                    developerConnection = 'scm:git:ssh://github.com:TozyMC/title-api.git'
+                    url = 'https://github.com/TozyMC/title-api'
+                }
+
+                developers {
+                    developer {
+                        id = 'tozymc'
+                        name = 'TozyMC'
+                        url = 'http://tozymc.xyz'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
