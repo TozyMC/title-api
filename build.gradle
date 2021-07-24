@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'xyz.tozymc.spigot'
-version '1.0-pre-release'
+version '1.0'
 description = 'Library to use titles in Spigot server.'
 
 sourceCompatibility = '1.8'
