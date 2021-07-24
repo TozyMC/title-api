@@ -36,6 +36,7 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testRuntimeOnly 'net.md-5:bungeecord-chat:1.16-R0.4'
 }
 
 java {
