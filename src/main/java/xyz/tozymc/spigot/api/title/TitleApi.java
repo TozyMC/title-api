@@ -31,7 +31,7 @@ public final class TitleApi {
         : new SpigotTitleActionbarApi();
   }
 
-  public static TitleApi getInstance() {
+  private static TitleApi getInstance() {
     return TitleApiHelper.INSTANCE;
   }
 
