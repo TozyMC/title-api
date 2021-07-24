@@ -64,6 +64,7 @@ javadoc {
         links << 'https://hub.spigotmc.org/javadocs/spigot/'
         links << 'https://javadoc.io/doc/org.jetbrains/annotations/21.0.1/'
     }
+    exclude 'xyz/tozymc/spigot/api/title/backend/**'
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
