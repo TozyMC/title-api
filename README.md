@@ -10,7 +10,7 @@
 
 [ossIndex]: https://ossindex.sonatype.org/component/pkg:maven/xyz.tozymc.spigot/title-api "OSS Index"
 
-[spigot]: / "Spigot Resources"
+[spigot]: https://www.spigotmc.org/resources/94607/ "Spigot Resources"
 
 <div align="center">
   <h1>title-api</h1>
